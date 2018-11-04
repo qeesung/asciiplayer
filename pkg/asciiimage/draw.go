@@ -50,6 +50,7 @@ type Drawer interface {
 type ImageDrawer struct {
 }
 
+// NewImageDrawer create a new image drawer
 func NewImageDrawer() Drawer {
 	return &ImageDrawer{}
 }

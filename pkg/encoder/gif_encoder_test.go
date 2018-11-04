@@ -10,6 +10,7 @@ import (
 	"testing"
 )
 
+// TestGifEncoder_EncodeToFile test encode frames to gif
 func TestGifEncoder_EncodeToFile(t *testing.T) {
 	assertions := assert.New(t)
 	frames := GetTheTestImages()
@@ -24,6 +25,7 @@ func TestGifEncoder_EncodeToFile(t *testing.T) {
 	os.Remove("test.gif")
 }
 
+// GetTheTestImages is util function to get the frames
 func GetTheTestImages() []image.Image {
 	imageFilenameList := make([]string, 0, 3)
 	for i := 0; i < 3; i++ {
