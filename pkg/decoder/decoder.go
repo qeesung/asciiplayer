@@ -1,3 +1,4 @@
+// decoder package is responsible for split the video or gif to frames
 package decoder
 
 import (
@@ -10,4 +11,3 @@ type Decoder interface {
 	Decode(r io.Reader) (frames []image.Image, err error)
 	DecodeFromFile(filename string) (frames []image.Image, err error)
 }
-
