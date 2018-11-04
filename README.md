@@ -1,3 +1,3 @@
-# ascii-player
+# asciiplayer
 
 ASCII video player write in golang
