@@ -6,6 +6,7 @@ import (
 	"testing"
 )
 
+// TestImageDrawer_DrawCharPixelMatrix2Image test the convert a pixel matrix to ascii image
 func TestImageDrawer_DrawCharPixelMatrix2Image(t *testing.T) {
 	assertions := assert.New(t)
 	imageConverter := convert.NewImageConverter()
