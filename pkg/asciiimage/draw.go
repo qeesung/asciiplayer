@@ -4,7 +4,6 @@ package asciiimage
 
 import (
 	"errors"
-	"fmt"
 	"github.com/fogleman/gg"
 	"github.com/golang/freetype/truetype"
 	"github.com/qeesung/image2ascii/ascii"
@@ -42,10 +41,12 @@ var DefaultDrawOptions = DrawOptions{
 	},
 }
 
+// Drawer interface define the operation that draw char pixel to image
 type Drawer interface {
 	DrawCharPixelMatrix2Image(charPixelMatrix [][]ascii.CharPixel, options DrawOptions) (img image.Image, err error)
 }
 
+// ImageDrawer implement the drawer interface
 type ImageDrawer struct {
 }
 
@@ -53,6 +54,7 @@ func NewImageDrawer() Drawer {
 	return &ImageDrawer{}
 }
 
+// DrawCharPixelMatrix2Image draw a char pixel matrix to a image
 func (drawer *ImageDrawer) DrawCharPixelMatrix2Image(charPixelMatrix [][]ascii.CharPixel, options DrawOptions) (img image.Image, err error) {
 	drawFont, err := truetype.Parse(options.TTF)
 	if err != nil {
@@ -84,9 +86,8 @@ func (drawer *ImageDrawer) DrawCharPixelMatrix2Image(charPixelMatrix [][]ascii.C
 	// draw the image
 	for i, charPixelLine := range charPixelMatrix {
 		for j, charPixel := range charPixelLine {
-			fmt.Printf("T%+v, %+v\n", i, j)
 			if options.Colored {
-				R, G, B , A:= charPixel.R, charPixel.G, charPixel.B, charPixel.A
+				R, G, B, A := charPixel.R, charPixel.G, charPixel.B, charPixel.A
 				dc.SetRGBA(float64(R)/255, float64(G)/255, float64(B)/255, float64(A)/255)
 			}
 			char := string(charPixel.Char)
