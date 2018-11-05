@@ -5,5 +5,6 @@
 [![Coverage Status](https://coveralls.io/repos/github/qeesung/asciiplayer/badge.svg)](https://coveralls.io/github/qeesung/asciiplayer)
 [![Go Report Card](https://goreportcard.com/badge/github.com/qeesung/asciiplayer)](https://goreportcard.com/report/github.com/qeesung/asciiplayer)
 [![GoDoc](https://godoc.org/github.com/qeesung/asciiplayer?status.svg)](https://godoc.org/github.com/qeesung/asciiplayer)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ASCII video player write in golang
