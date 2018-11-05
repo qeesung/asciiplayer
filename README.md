@@ -8,3 +8,9 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ASCII video player write in golang
+
+# Installation
+
+```bash
+go get github.com/qeesung/asciiplayer
+```
