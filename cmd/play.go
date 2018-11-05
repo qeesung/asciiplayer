@@ -16,35 +16,48 @@ package cmd
 
 import (
 	"fmt"
-
+	"github.com/qeesung/asciiplayer/pkg/player"
 	"github.com/spf13/cobra"
+	"os"
 )
+
+var filename string
+var colored string
+var ratio float64
+var fixedWidth int
+var fixedHeight int
+var fitScreen bool
+var stretchedScreen bool
+var delay float64
+var reversed bool
 
 // playCmd represents the play command
 var playCmd = &cobra.Command{
 	Use:   "play",
-	Short: "A brief description of your command",
-	Long: `A longer description that spans multiple lines and likely contains examples
-and usage of using your command. For example:
+	Short: "play the gif and video in ASCII mode",
+	Long: SummaryTitle + `
 
-Cobra is a CLI library for Go that empowers applications.
-This application is a tool to generate the needed files
-to quickly create a Cobra application.`,
+play command only work in terminal, decoding the gif or video
+info multi frames and convert the frames to ASCII character matrix,
+finally, output the matrix to stdout at a certain frequency.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("play called")
+		if filename == "" { // if filename is empty
+			cmd.Help()
+			os.Exit(-1)
+		}
+
+		terminalPlayer, supported := player.NewTerminalPlayer(filename)
+		if !supported {
+			fmt.Fprintln(os.Stderr, "Not Supported file type!")
+			os.Exit(-1)
+		}
+
+		playOptions := player.DefaultPlayOptions
+		terminalPlayer.Play(filename, &playOptions)
 	},
 }
 
 func init() {
 	rootCmd.AddCommand(playCmd)
-
-	// Here you will define your flags and configuration settings.
-
-	// Cobra supports Persistent Flags which will work for this command
-	// and all subcommands, e.g.:
-	// playCmd.PersistentFlags().String("foo", "", "A help for foo")
-
-	// Cobra supports local flags which will only run when this command
-	// is called directly, e.g.:
-	// playCmd.Flags().BoolP("toggle", "t", false, "Help message for toggle")
+	playCmd.PersistentFlags().StringVarP(&filename, "filename", "f", "", "gif filename or video filename")
 }

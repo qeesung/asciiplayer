@@ -27,10 +27,7 @@ var versionCmd = &cobra.Command{
 	Long:  `get the version`,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Print(ShortTitle)
-		fmt.Println(Title)
-		fmt.Println("Version    : " + Version)
-		fmt.Println("Author     : " + Author)
-		fmt.Println(">>HomePage : " + HomePage)
+		fmt.Print(SummaryTitle)
 	},
 }
 

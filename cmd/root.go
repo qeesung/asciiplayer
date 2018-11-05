@@ -9,13 +9,13 @@ import (
 var rootCmd = &cobra.Command{
 	Use:   "asciiplayer",
 	Short: "asciiplayer is a command line tool to play gif and video in ASCII mode",
-	Long: `asciiplayer is a library that can convert gif and video to ASCII image
+	Long: SummaryTitle + `
+
+asciiplayer is a library that can convert gif and video to ASCII image
 and provide the cli for easy use.
->>HomePage: https://github.com/qeesung/asciiplayer
->>Author  : qeesung
 `,
 	Run: func(cmd *cobra.Command, args []string) {
-		// Do Stuff Here
+		cmd.Help()
 	},
 }
 
