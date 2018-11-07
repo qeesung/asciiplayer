@@ -31,11 +31,11 @@ type PlayCommand struct {
 func (playCommand *PlayCommand) Init() {
 	playCommand.cmd = &cobra.Command{
 		Use:   "play",
-		Short: "play the gif and video in ASCII mode",
+		Short: "Play the gif and video in ASCII mode",
 		Args:  cobra.ExactArgs(1),
 		Long: SummaryTitle + `
 
-play command only work in terminal, decoding the gif or video
+Play command only work in terminal, decoding the gif or video
 info multi frames and convert the frames to ASCII character matrix,
 finally, output the matrix to stdout at a certain frequency.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
