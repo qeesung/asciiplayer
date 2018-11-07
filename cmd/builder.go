@@ -13,5 +13,6 @@ func (builder *CommandBuilder) Build() *Cli {
 	base.Cmd().SilenceErrors = true
 
 	cli.AddCommand(base, &PlayCommand{})
+	cli.AddCommand(base, &VersionCommand{})
 	return cli
 }
