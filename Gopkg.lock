@@ -171,6 +171,14 @@
   pruneopts = "UT"
   revision = "9b800f95dbbc54abff0acf7ee32d88ba4e328c89"
 
+[[projects]]
+  digest = "1:ea32ea78769a2dd58d27872d494b2a916bc486c6549bcba897ca305ae1e9e1e1"
+  name = "gopkg.in/go-playground/colors.v1"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "7653198b0b5bdd1d88a8cdac8935cafd3bd4cc1c"
+  version = "v1.1.1"
+
 [solve-meta]
   analyzer-name = "dep"
   analyzer-version = 1
@@ -183,7 +191,9 @@
     "github.com/sirupsen/logrus",
     "github.com/spf13/cobra",
     "github.com/stretchr/testify/assert",
+    "golang.org/x/image/draw",
     "golang.org/x/image/font/gofont/gomono",
+    "gopkg.in/go-playground/colors.v1",
   ]
   solver-name = "gps-cdcl"
   solver-version = 1
