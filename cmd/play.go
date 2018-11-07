@@ -19,6 +19,7 @@ import (
 	"github.com/qeesung/asciiplayer/pkg/player"
 	"github.com/qeesung/image2ascii/convert"
 	"github.com/spf13/cobra"
+	"time"
 )
 
 type PlayCommand struct {
@@ -52,7 +53,9 @@ func (playCommand *PlayCommand) play(args []string) error {
 		return errors.New("not supported file type")
 	}
 
-	playOptions := player.DefaultPlayOptions
+	playOptions := player.PlayOptions{}
+	playOptions.Options = playCommand.Options
+	playOptions.Delay = time.Duration(playCommand.Delay*1000) * time.Millisecond
 	terminalPlayer.Play(filename, &playOptions)
 	return nil
 }
@@ -64,8 +67,9 @@ func (playCommand *PlayCommand) addFlags() {
 	flagSet.IntVarP(&playCommand.FixedWidth, "width", "w", -1, "Scale to fixed width")
 	flagSet.IntVarP(&playCommand.FixedHeight, "height", "g", -1, "Scale to fixed height")
 	flagSet.BoolVarP(&playCommand.StretchedScreen, "stretched", "t", false, "Stretch the image to fit screen")
-	flagSet.BoolVarP(&playCommand.FitScreen, "colored", "c", true, "Play with color")
+	flagSet.BoolVarP(&playCommand.Colored, "colored", "c", true, "Play with color")
 	flagSet.BoolVarP(&playCommand.Reversed, "reversed", "i", false, "Play with the ascii reversed")
+	flagSet.BoolVarP(&playCommand.FitScreen, "fit", "s", true, "Play fit the screen")
 	flagSet.Float64VarP(&playCommand.Delay, "delay", "d", 0.15, "Play delay duration between two frames")
 }
 
