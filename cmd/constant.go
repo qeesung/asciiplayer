@@ -12,5 +12,5 @@ const (
   / _ \ \___ \| |    | | | || |_) | |     / _ \\ V /|  _| | |_) |
  / ___ \ ___) | |___ | | | ||  __/| |___ / ___ \| | | |___|  _ <
 /_/   \_\____/ \____|___|___|_|   |_____/_/   \_\_| |_____|_| \_\`
-	SummaryTitle = Title + "\n>>>Version : " + Version + "\n>>>Author  : " + Author + "\n>>>HomePage : " + HomePage
+	SummaryTitle = Title + "\n>>>Version  : " + Version + "\n>>>Author   : " + Author + "\n>>>HomePage : " + HomePage
 )
