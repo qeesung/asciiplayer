@@ -28,9 +28,7 @@ func (encodeCommand *EncodeCommand) Init() {
 		Args:  cobra.ExactArgs(1),
 		Long: SummaryTitle + `
 
-Play command only work in terminal, decoding the gif or video
-info multi frames and convert the frames to ASCII character matrix,
-finally, output the matrix to stdout at a certain frequency.`,
+Encode command can convert gif or video to a ascii gif or video.`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return encodeCommand.encode(args)
 		},
