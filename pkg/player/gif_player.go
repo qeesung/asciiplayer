@@ -47,7 +47,7 @@ func (terminalPlayer *GifTerminalPlayer) Play(filename string, playOptions *Play
 			asciiImageStr := terminalPlayer.converter.Image2ASCIIString(frame, &convertOptions)
 			fmt.Fprint(stdout, asciiImageStr)
 			time.Sleep(delay)
-			fmt.Fprint(stdout, clearScreen)
+			fmt.Fprint(stdout, ClearScreen)
 		}
 	}
 }

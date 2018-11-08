@@ -6,7 +6,7 @@ import (
 	"time"
 )
 
-const clearScreen = "\033[H\033[2J"
+const ClearScreen = "\033[H\033[2J"
 
 type PlayOptions struct {
 	convert.Options
