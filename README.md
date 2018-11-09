@@ -122,4 +122,7 @@ Setup a http server with the custom port
 asciiplayer server demo.gif --port 8888
 ```
 
+## Library usage
+
+Please access the godoc https://godoc.org/github.com/qeesung/asciiplayer
 
