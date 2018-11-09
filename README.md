@@ -8,6 +8,14 @@
 [![GoDoc](https://godoc.org/github.com/qeesung/asciiplayer?status.svg)](https://godoc.org/github.com/qeesung/asciiplayer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
+```                  
+                       _    ____   ____ ___ ___ ____  _        _ __   _______ ____
+                      / \  / ___| / ___|_ _|_ _|  _ \| |      / \\ \ / / ____|  _ \
+                     / _ \ \___ \| |    | | | || |_) | |     / _ \\ V /|  _| | |_) |
+                    / ___ \ ___) | |___ | | | ||  __/| |___ / ___ \| | | |___|  _ <
+                   /_/   \_\____/ \____|___|___|_|   |_____/_/   \_\_| |_____|_| \_\
+```
+
 ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
 
 ## Table of contents
