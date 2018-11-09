@@ -2,15 +2,21 @@ package progress
 
 import (
 	"github.com/gosuri/uiprogress"
+	"sync"
 )
 
 var MaxSteps = 10000
 
 type WaitingBar struct {
+	sync.WaitGroup
 }
 
 func (*WaitingBar) Start() {
 	uiprogress.Start()
+}
+
+func (*WaitingBar) Stop() {
+	uiprogress.Stop()
 }
 
 func (waitingBar *WaitingBar) AddBar(barName string, steps int) chan<- int {
@@ -21,6 +27,8 @@ func (waitingBar *WaitingBar) AddBar(barName string, steps int) chan<- int {
 	})
 
 	go func() {
+		waitingBar.Add(1)
+		defer waitingBar.Done()
 		for range notifier {
 			bar.Incr()
 		}

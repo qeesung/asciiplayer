@@ -63,7 +63,7 @@ func (encodeCommand *EncodeCommand) encode(args []string) error {
 	}
 
 	logrus.Debugf("Decoding the input file %s...", inputFilename)
-	decodeNotifier := waitingBar.AddBar("Decoding  ", progress.MaxSteps)
+	decodeNotifier := waitingBar.AddBar("Decoding ", progress.MaxSteps)
 	frames, err := inputDecoder.DecodeFromFile(inputFilename, decodeNotifier)
 	if err != nil {
 		return err
@@ -71,16 +71,17 @@ func (encodeCommand *EncodeCommand) encode(args []string) error {
 
 	drawer := asciiimage.NewImageDrawer()
 
-	logrus.Debugf("Converting the frames to ASCII frames...")
-	convertNotifier := waitingBar.AddBar("Converting", len(frames))
+	logrus.Debugf("Rendering the frames to ASCII frames...")
+	convertNotifier := waitingBar.AddBar("Rendering", len(frames))
 	asciiImages, err := drawer.BatchConvertThenDraw(frames, convertOptions, drawOptions, convertNotifier)
 	if err != nil {
 		return err
 	}
 
-	encodeNotifier := waitingBar.AddBar("Encoding  ", len(asciiImages))
+	encodeNotifier := waitingBar.AddBar("Encoding ", len(asciiImages))
 	logrus.Debugf("Encoding the frames to output file %s...", outputFilename)
 	outputEncoder.EncodeToFile(outputFilename, asciiImages, encodeNotifier)
+	waitingBar.Wait()
 	fmt.Printf("File saved to %s\n", outputFilename)
 	return nil
 }
