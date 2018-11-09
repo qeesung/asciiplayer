@@ -7,7 +7,7 @@
 [![GoDoc](https://godoc.org/github.com/qeesung/asciiplayer?status.svg)](https://godoc.org/github.com/qeesung/asciiplayer)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
-AsciiPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
+ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
 
 # Installation
 
