@@ -19,5 +19,60 @@ ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide
 # Installation
 
 ```bash
-go get github.com/qeesung/asciiplayer
+go get -u github.com/qeesung/asciiplayer
+```
+
+# CLI usage
+
+```
+    _    ____   ____ ___ ___ ____  _        _ __   _______ ____
+   / \  / ___| / ___|_ _|_ _|  _ \| |      / \\ \ / / ____|  _ \
+  / _ \ \___ \| |    | | | || |_) | |     / _ \\ V /|  _| | |_) |
+ / ___ \ ___) | |___ | | | ||  __/| |___ / ___ \| | | |___|  _ <
+/_/   \_\____/ \____|___|___|_|   |_____/_/   \_\_| |_____|_| \_\
+>>>Version  : 1.0.0
+>>>Author   : qeesung
+>>>HomePage : https://github.com/qeesung/asciiplayer
+
+asciiplayer is a library that can convert gif and video to ASCII image
+and provide the cli for easy use.
+
+Usage:
+  asciiplayer [command]
+
+Available Commands:
+  encode      Encode gif or video to ascii gif or video
+  help        Help about any command
+  play        Play the gif and video in ASCII mode
+  server      Server command setup a server
+  version     Show the version
+
+Flags:
+  -D, --debug   Switch log level to DEBUG mode
+  -h, --help    help for asciiplayer
+
+Use "asciiplayer [command] --help" for more information about a command.
+```
+
+## Command play
+
+Play command only work in terminal, decoding the gif or video info multi frames and convert the frames to ASCII character matrix, finally, output the matrix to stdout at a certain frequency.
+
+### examples
+
+Play the gif， and be able to match the screen size.
+
+```bash
+asciiplayer play demo.gif
+```
+
+Zoom to the original 1/10 and play it.
+
+```bash
+asciiplayer play demo.gif -r 0.1
+```
+
+Zoom to the fixed width and fixed height and play it
+```bash
+asciiplayer play demo.gif -w 100 -h 40
 ```
