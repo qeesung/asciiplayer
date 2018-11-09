@@ -26,7 +26,7 @@ func NewGifTerminalPlayer() Player {
 // Play decode the gif file content then play it in the terminal
 func (terminalPlayer *GifTerminalPlayer) Play(filename string, playOptions *PlayOptions) {
 	// decode the file first
-	frames, err := terminalPlayer.decoder.DecodeFromFile(filename)
+	frames, err := terminalPlayer.decoder.DecodeFromFile(filename, nil)
 	if err != nil {
 		log.Fatal(err)
 	}

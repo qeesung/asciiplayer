@@ -32,7 +32,7 @@ func (handler *ImageFlushHandler) Init() error {
 	}
 
 	logrus.Debugf("Decoding the image %s...", handler.Filename)
-	frames, err := imageDecoder.DecodeFromFile(handler.Filename)
+	frames, err := imageDecoder.DecodeFromFile(handler.Filename, nil)
 	if err != nil {
 		return err
 	}

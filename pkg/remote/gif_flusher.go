@@ -30,7 +30,7 @@ func (handler *GifFlushHandler) Init() error {
 		return errors.New("not supported file type")
 	}
 
-	frames, err := gifDecoder.DecodeFromFile(handler.Filename)
+	frames, err := gifDecoder.DecodeFromFile(handler.Filename, nil)
 	if err != nil {
 		return err
 	}

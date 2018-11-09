@@ -2,13 +2,15 @@ package cmd
 
 import (
 	"errors"
+	"fmt"
 	"github.com/qeesung/asciiplayer/pkg/asciiimage"
 	"github.com/qeesung/asciiplayer/pkg/decoder"
 	"github.com/qeesung/asciiplayer/pkg/encoder"
+	"github.com/qeesung/asciiplayer/pkg/progress"
 	"github.com/qeesung/asciiplayer/pkg/util"
 	"github.com/qeesung/image2ascii/convert"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
-	"image"
 )
 
 type EncodeCommand struct {
@@ -38,42 +40,48 @@ Encode command can convert gif or video to a ascii gif or video.`,
 }
 
 func (encodeCommand *EncodeCommand) encode(args []string) error {
+	waitingBar := progress.WaitingBar{}
+	waitingBar.Start()
+
 	convertOptions, drawOptions, err := encodeCommand.parseFlags()
 	if err != nil {
 		return err
 	}
 
 	inputFilename := args[0]
+	outputFilename := encodeCommand.OutputFilename
 
+	logrus.Debugf("Start encoding %s to %s...", inputFilename, outputFilename)
 	inputDecoder, supported := decoder.NewDecoder(inputFilename)
 	if !supported {
 		return errors.New("not supported input file type")
 	}
 
-	frames, err := inputDecoder.DecodeFromFile(inputFilename)
-	if err != nil {
-		return err
-	}
-
-	imageConverter := convert.NewImageConverter()
-	drawer := asciiimage.NewImageDrawer()
-
-	asciiImages := make([]image.Image, 0, len(frames))
-	for _, frame := range frames {
-		charPixelMatrix := imageConverter.Image2CharPixelMatrix(frame, &convertOptions)
-		asciiImage, err := drawer.DrawCharPixelMatrix2Image(charPixelMatrix, drawOptions)
-		if err != nil {
-			return err
-		}
-		asciiImages = append(asciiImages, asciiImage)
-	}
-
-	outputFilename := encodeCommand.OutputFilename
 	outputEncoder, supported := encoder.NewEncoder(outputFilename)
 	if !supported {
 		return errors.New("not supported output file type")
 	}
-	outputEncoder.EncodeToFile(outputFilename, asciiImages)
+
+	logrus.Debugf("Decoding the input file %s...", inputFilename)
+	decodeNotifier := waitingBar.AddBar("Decoding  ", progress.MaxSteps)
+	frames, err := inputDecoder.DecodeFromFile(inputFilename, decodeNotifier)
+	if err != nil {
+		return err
+	}
+
+	drawer := asciiimage.NewImageDrawer()
+
+	logrus.Debugf("Converting the frames to ASCII frames...")
+	convertNotifier := waitingBar.AddBar("Converting", len(frames))
+	asciiImages, err := drawer.BatchConvertThenDraw(frames, convertOptions, drawOptions, convertNotifier)
+	if err != nil {
+		return err
+	}
+
+	encodeNotifier := waitingBar.AddBar("Encoding  ", len(asciiImages))
+	logrus.Debugf("Encoding the frames to output file %s...", outputFilename)
+	outputEncoder.EncodeToFile(outputFilename, asciiImages, encodeNotifier)
+	fmt.Printf("File saved to %s\n", outputFilename)
 	return nil
 }
 
@@ -96,8 +104,6 @@ func (encodeCommand *EncodeCommand) addFlags() {
 func (encodeCommand *EncodeCommand) parseFlags() (convertOptions convert.Options,
 	drawOptions asciiimage.DrawOptions, err error) {
 	convertOptions = encodeCommand.Options
-	convertOptions.FitScreen = false
-	convertOptions.StretchedScreen = false
 
 	drawOptions = asciiimage.DefaultDrawOptions
 	drawOptions.FontSize = float64(encodeCommand.FontSize)

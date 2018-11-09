@@ -7,6 +7,7 @@ import (
 	"github.com/fogleman/gg"
 	"github.com/golang/freetype/truetype"
 	"github.com/qeesung/image2ascii/ascii"
+	"github.com/qeesung/image2ascii/convert"
 	"golang.org/x/image/font/gofont/gomono"
 	"image"
 	"image/color"
@@ -44,6 +45,7 @@ var DefaultDrawOptions = DrawOptions{
 // Drawer interface define the operation that draw char pixel to image
 type Drawer interface {
 	DrawCharPixelMatrix2Image(charPixelMatrix [][]ascii.CharPixel, options DrawOptions) (img image.Image, err error)
+	BatchConvertThenDraw(frames []image.Image, convertOptions convert.Options, drawOptions DrawOptions, progress chan<- int) (asciiImages []image.Image, err error)
 }
 
 // ImageDrawer implement the drawer interface
@@ -53,6 +55,26 @@ type ImageDrawer struct {
 // NewImageDrawer create a new image drawer
 func NewImageDrawer() Drawer {
 	return &ImageDrawer{}
+}
+
+func (drawer *ImageDrawer) BatchConvertThenDraw(frames []image.Image,
+	convertOptions convert.Options, drawOptions DrawOptions, progress chan<- int) (asciiImages []image.Image, err error) {
+	imageConverter := convert.NewImageConverter()
+
+	asciiImages = make([]image.Image, 0, len(frames))
+	for _, frame := range frames {
+		charPixelMatrix := imageConverter.Image2CharPixelMatrix(frame, &convertOptions)
+		asciiImage, err := drawer.DrawCharPixelMatrix2Image(charPixelMatrix, drawOptions)
+		if err != nil {
+			return nil, err
+		}
+		asciiImages = append(asciiImages, asciiImage)
+		if progress != nil {
+			progress <- 1
+		}
+	}
+	close(progress)
+	return asciiImages, nil
 }
 
 // DrawCharPixelMatrix2Image draw a char pixel matrix to a image

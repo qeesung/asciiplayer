@@ -18,7 +18,7 @@ func NewGifDeCoder() Decoder {
 }
 
 // Decode for GifDeCoder decode the gif file to multi frames
-func (gifDecoder *GifDecoder) Decode(reader io.Reader) (frames []image.Image, err error) {
+func (gifDecoder *GifDecoder) Decode(reader io.Reader, progress chan<- int) (frames []image.Image, err error) {
 	gifImage, err := gif.DecodeAll(reader)
 
 	if err != nil {
@@ -35,19 +35,23 @@ func (gifDecoder *GifDecoder) Decode(reader io.Reader) (frames []image.Image, er
 		frame := image.NewRGBA(image.Rect(0, 0, imgWidth, imgHeight))
 		draw.Draw(frame, frame.Bounds(), overPaintImage, image.ZP, draw.Over)
 		frames = append(frames, frame)
+		if progress != nil {
+			progress <- 1
+		}
 	}
+	close(progress)
 
 	return frames, nil
 }
 
 // DecodeFromFile decode the gif file by filename to multi frames
-func (gifDecoder *GifDecoder) DecodeFromFile(gifFilename string) (frames []image.Image, err error) {
+func (gifDecoder *GifDecoder) DecodeFromFile(gifFilename string, progress chan<- int) (frames []image.Image, err error) {
 	f, err := os.Open(gifFilename)
 	if err != nil {
 		return nil, err
 	}
 	defer f.Close()
-	return gifDecoder.Decode(f)
+	return gifDecoder.Decode(f, progress)
 }
 
 // getGifDimensions get the gif dimension
