@@ -15,5 +15,6 @@ func (builder *CommandBuilder) Build() *Cli {
 	cli.AddCommand(base, &PlayCommand{})
 	cli.AddCommand(base, &VersionCommand{})
 	cli.AddCommand(base, &EncodeCommand{})
+	cli.AddCommand(base, &ServerCommand{})
 	return cli
 }

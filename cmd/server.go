@@ -1,0 +1,76 @@
+package cmd
+
+import (
+	"errors"
+	"fmt"
+	"github.com/qeesung/asciiplayer/pkg/remote"
+	"github.com/qeesung/image2ascii/convert"
+	"github.com/spf13/cobra"
+	"net/http"
+)
+
+type ServerCommand struct {
+	baseCommand
+	convert.Options
+	Delay float64
+	Host  string
+	Port  string
+}
+
+func (serverCommand *ServerCommand) Init() {
+	serverCommand.cmd = &cobra.Command{
+		Use:   "server",
+		Short: "Server command setup a server",
+		Args:  cobra.ExactArgs(1),
+		Long: SummaryTitle + `
+
+server command setup a server, and other can access the ascii image remotely`,
+		RunE: func(cmd *cobra.Command, args []string) error {
+			return serverCommand.server(args)
+		},
+		Example: serverExample(),
+	}
+	serverCommand.addFlags()
+}
+
+func (serverCommand *ServerCommand) server(args []string) error {
+	filename := args[0]
+	flushHandler, supported := remote.NewFlushHandler(filename)
+	if !supported {
+		return errors.New("not supported file type")
+	}
+
+	err := flushHandler.Init()
+	if err != nil {
+		return err
+	}
+
+	http.HandleFunc("/", flushHandler.HandlerFunc())
+	addr := serverCommand.Host + ":" + serverCommand.Port
+	fmt.Println("Server available on : http://" + addr)
+	err = http.ListenAndServe(addr, nil)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (serverCommand *ServerCommand) addFlags() {
+	flagSet := serverCommand.cmd.Flags()
+
+	flagSet.Float64VarP(&serverCommand.Ratio, "ratio", "r", 1.0, "Scale ratio")
+	flagSet.IntVarP(&serverCommand.FixedWidth, "width", "w", -1, "Scale to fixed width")
+	flagSet.IntVarP(&serverCommand.FixedHeight, "height", "g", -1, "Scale to fixed height")
+	flagSet.BoolVarP(&serverCommand.StretchedScreen, "stretched", "t", false, "Stretch the image to fit screen")
+	flagSet.BoolVarP(&serverCommand.Colored, "colored", "c", true, "Play with color")
+	flagSet.BoolVarP(&serverCommand.Reversed, "reversed", "i", false, "Play with the ascii reversed")
+	flagSet.BoolVarP(&serverCommand.FitScreen, "fit", "s", true, "Play fit the screen")
+	flagSet.Float64VarP(&serverCommand.Delay, "delay", "d", 0.15, "Play delay duration between two frames")
+	flagSet.StringVarP(&serverCommand.Host, "host", "H", "0.0.0.0", "Server host address")
+	flagSet.StringVarP(&serverCommand.Port, "port", "p", "8080", "Server host port")
+}
+
+func serverExample() string {
+	return `$ asciiplay server hello.gif`
+}
