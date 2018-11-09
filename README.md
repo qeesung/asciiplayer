@@ -10,13 +10,13 @@
 
 ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
 
-# Installation
+## Installation
 
 ```bash
 go get -u github.com/qeesung/asciiplayer
 ```
 
-# CLI usage
+## CLI usage
 
 ```
     _    ____   ____ ___ ___ ____  _        _ __   _______ ____
@@ -48,13 +48,13 @@ Flags:
 Use "asciiplayer [command] --help" for more information about a command.
 ```
 
-## Command play
+### Command play
 
 Play command only work in terminal, decoding the gif or video info multi frames and convert the frames to ASCII character matrix, finally, output the matrix to stdout at a certain frequency.
 
 More detail please run `asciiplayer play --help`
 
-### Play examples
+#### Play examples
 
 Play the gif， and be able to match the screen size.
 ```bash
@@ -71,13 +71,13 @@ Zoom to the fixed width and fixed height and play it
 asciiplayer play demo.gif -w 100 -h 40
 ```
 
-## Command encode
+### Command encode
 
 Encode command can convert gif or video to a ascii gif or video.
 
 More detail please run `asciiplayer encode --help`
 
-### Encode examples
+#### Encode examples
 
 Encode gif image to ascii gif image 
 ```bash
@@ -94,7 +94,7 @@ Zoom to the original 1/10, then encode gif image to ascii gif image
 asciiplayer encode demo.gif -o output.gif -r 0.1
 ```
 
-## Command server
+### Command server
 
 Setup a http server, and share your ascii image with others. Setup a http server, then access through curl command.
 
@@ -110,7 +110,7 @@ $ curl http://hostname:8080
 # play ascii image here
 ```
 
-### Server examples
+#### Server examples
 
 Setup a http server with default port and host
 ```bash
