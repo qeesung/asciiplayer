@@ -14,15 +14,19 @@ type ImageDecoder struct {
 }
 
 func (decoder *ImageDecoder) Decode(reader io.Reader, progress chan<- int) (frames []image.Image, err error) {
+	if progress != nil {
+		defer close(progress)
+	}
+
 	img, _, err := image.Decode(reader)
 
+	if progress != nil {
+		progress <- 1
+	}
 	if err != nil {
 		return nil, err
 	}
 
-	if progress != nil {
-		close(progress)
-	}
 	return []image.Image{img}, nil
 }
 

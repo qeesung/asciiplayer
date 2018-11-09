@@ -21,6 +21,10 @@ func NewGifEncoder() Encoder {
 
 // Encode encode frames into a io writer
 func (gifEncoder *GifEncoder) Encode(writer io.Writer, frames []image.Image, progress chan<- int) error {
+	if progress != nil {
+		defer close(progress)
+	}
+
 	paletteFactor := append(palette.WebSafe, color.Transparent)
 	outGif := &gif.GIF{}
 	for _, frame := range frames {
@@ -32,9 +36,6 @@ func (gifEncoder *GifEncoder) Encode(writer io.Writer, frames []image.Image, pro
 		if progress != nil { // report the encode process
 			progress <- 1
 		}
-	}
-	if progress != nil {
-		close(progress)
 	}
 	return gif.EncodeAll(writer, outGif)
 }

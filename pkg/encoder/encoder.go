@@ -26,9 +26,25 @@ var DefaultEncodeOptions = EncodeOptions{
 	Delay:   time.Duration(100) * time.Millisecond,
 }
 
+var supportedEncoderMatcher = []struct {
+	Match       func(string) bool
+	Constructor func() Encoder
+}{
+	{
+		Match:       util.IsGif,
+		Constructor: NewGifEncoder,
+	},
+	{
+		Match:       util.IsSupportedImage,
+		Constructor: NewImageEncoder,
+	},
+}
+
 func NewEncoder(filename string) (encoder Encoder, supported bool) {
-	if util.IsGif(filename) {
-		return NewGifEncoder(), true
+	for _, matcher := range supportedEncoderMatcher {
+		if matcher.Match(filename) {
+			return matcher.Constructor(), true
+		}
 	}
 	return nil, false
 }

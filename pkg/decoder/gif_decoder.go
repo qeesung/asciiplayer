@@ -19,6 +19,9 @@ func NewGifDeCoder() Decoder {
 
 // Decode for GifDeCoder decode the gif file to multi frames
 func (gifDecoder *GifDecoder) Decode(reader io.Reader, progress chan<- int) (frames []image.Image, err error) {
+	if progress != nil {
+		defer close(progress)
+	}
 	gifImage, err := gif.DecodeAll(reader)
 
 	if err != nil {
@@ -38,9 +41,6 @@ func (gifDecoder *GifDecoder) Decode(reader io.Reader, progress chan<- int) (fra
 		if progress != nil {
 			progress <- 1
 		}
-	}
-	if progress != nil {
-		close(progress)
 	}
 
 	return frames, nil

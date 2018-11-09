@@ -59,6 +59,10 @@ func NewImageDrawer() Drawer {
 
 func (drawer *ImageDrawer) BatchConvertThenDraw(frames []image.Image,
 	convertOptions convert.Options, drawOptions DrawOptions, progress chan<- int) (asciiImages []image.Image, err error) {
+	if progress != nil {
+		defer close(progress)
+	}
+
 	imageConverter := convert.NewImageConverter()
 
 	asciiImages = make([]image.Image, 0, len(frames))
@@ -72,9 +76,6 @@ func (drawer *ImageDrawer) BatchConvertThenDraw(frames []image.Image,
 		if progress != nil {
 			progress <- 1
 		}
-	}
-	if progress != nil {
-		close(progress)
 	}
 	return asciiImages, nil
 }
