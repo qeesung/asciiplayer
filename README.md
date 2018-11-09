@@ -71,6 +71,11 @@ Zoom to the fixed width and fixed height and play it
 asciiplayer play demo.gif -w 100 -h 40
 ```
 
+Play the png image
+```
+asciiplayer play demo.png
+```
+
 ### Command encode
 
 Encode command can convert gif or video to a ascii gif or video.
@@ -92,6 +97,11 @@ asciiplayer encode demo.gif -o output.gif --font_size=5
 Zoom to the original 1/10, then encode gif image to ascii gif image
 ```bash
 asciiplayer encode demo.gif -o output.gif -r 0.1
+```
+
+Encode jpeg image to ascii png image
+```bash
+asciiplayer encode demo.jpeg -o output.png
 ```
 
 ### Command server
@@ -120,6 +130,11 @@ asciiplayer server demo.gif
 Setup a http server with the custom port
 ```bash
 asciiplayer server demo.gif --port 8888
+```
+
+Setup a http server and share the ascii png image
+```bash
+asciiplayer server demo.png
 ```
 
 ## Library usage
