@@ -20,11 +20,21 @@ type ServerCommand struct {
 func (serverCommand *ServerCommand) Init() {
 	serverCommand.cmd = &cobra.Command{
 		Use:   "server",
-		Short: "Server command setup a server",
+		Short: "Server command setup a http share server",
 		Args:  cobra.ExactArgs(1),
 		Long: SummaryTitle + `
 
-server command setup a server, and other can access the ascii image remotely`,
+Setup a http server, and share your ascii image with others. Setup a http server, then access through curl command.
+
+Setup server
+
+$ asciiplayer server demo.gif
+# Server available on : http://0.0.0.0:8080
+Access from remote
+
+$ curl http://hostname:8080
+# play ascii image here
+`,
 		RunE: func(cmd *cobra.Command, args []string) error {
 			return serverCommand.server(args)
 		},
@@ -72,5 +82,10 @@ func (serverCommand *ServerCommand) addFlags() {
 }
 
 func serverExample() string {
-	return `$ asciiplay server hello.gif`
+	return `Setup a http server with default port and host
+$ asciiplayer server demo.gif
+
+Setup a http server with the custom port
+$ asciiplayer server demo.gif --port 8888
+`
 }
