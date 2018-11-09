@@ -19,7 +19,10 @@ func (decoder *ImageDecoder) Decode(reader io.Reader, progress chan<- int) (fram
 	if err != nil {
 		return nil, err
 	}
-	close(progress)
+
+	if progress != nil {
+		close(progress)
+	}
 	return []image.Image{img}, nil
 }
 

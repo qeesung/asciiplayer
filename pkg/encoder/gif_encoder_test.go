@@ -16,7 +16,7 @@ func TestGifEncoder_EncodeToFile(t *testing.T) {
 	frames := GetTheTestImages()
 	// merge the frames
 	gifEncoder := NewGifEncoder()
-	err := gifEncoder.EncodeToFile("test.gif", frames)
+	err := gifEncoder.EncodeToFile("test.gif", frames, nil)
 	assertions.Nil(err)
 	// check the file
 	_, err = os.Stat("test.gif")

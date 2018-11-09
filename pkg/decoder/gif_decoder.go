@@ -39,7 +39,9 @@ func (gifDecoder *GifDecoder) Decode(reader io.Reader, progress chan<- int) (fra
 			progress <- 1
 		}
 	}
-	close(progress)
+	if progress != nil {
+		close(progress)
+	}
 
 	return frames, nil
 }

@@ -21,11 +21,11 @@ func NewGifEncoder() Encoder {
 
 // Encode encode frames into a io writer
 func (gifEncoder *GifEncoder) Encode(writer io.Writer, frames []image.Image, progress chan<- int) error {
-	palette := append(palette.WebSafe, color.Transparent)
+	paletteFactor := append(palette.WebSafe, color.Transparent)
 	outGif := &gif.GIF{}
 	for _, frame := range frames {
 		bounds := frame.Bounds()
-		paletteImage := image.NewPaletted(bounds, palette)
+		paletteImage := image.NewPaletted(bounds, paletteFactor)
 		draw.Draw(paletteImage, bounds, frame, image.ZP, draw.Src)
 		outGif.Image = append(outGif.Image, paletteImage)
 		outGif.Delay = append(outGif.Delay, 1)
@@ -33,7 +33,9 @@ func (gifEncoder *GifEncoder) Encode(writer io.Writer, frames []image.Image, pro
 			progress <- 1
 		}
 	}
-	close(progress)
+	if progress != nil {
+		close(progress)
+	}
 	return gif.EncodeAll(writer, outGif)
 }
 

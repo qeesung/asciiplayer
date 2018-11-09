@@ -73,7 +73,9 @@ func (drawer *ImageDrawer) BatchConvertThenDraw(frames []image.Image,
 			progress <- 1
 		}
 	}
-	close(progress)
+	if progress != nil {
+		close(progress)
+	}
 	return asciiImages, nil
 }
 
