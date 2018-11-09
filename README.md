@@ -99,3 +99,33 @@ Zoom to the original 1/10, then encode gif image to ascii gif image
 ```bash
 asciiplayer encode demo.gif -o output.gif -r 0.1
 ```
+
+## Command server
+
+Setup a http server, and share your ascii image with others. Setup a http server, then access through curl command.
+
+Setup server
+```bash
+$ asciiplayer server demo.gif
+# Server available on : http://0.0.0.0:8080
+```
+
+Access from remote
+```bash
+$ curl http://hostname:8080
+# play ascii image here
+```
+
+### Server examples
+
+Setup a http server with default port and host
+```bash
+asciiplayer server demo.gif
+```
+
+Setup a http server with the custom port
+```bash
+asciiplayer server demo.gif --port 8888
+```
+
+
