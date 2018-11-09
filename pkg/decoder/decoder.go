@@ -14,10 +14,26 @@ type Decoder interface {
 	DecodeFromFile(filename string) (frames []image.Image, err error)
 }
 
+var supportedDecoderMatchers = []struct {
+	Match       func(string) bool
+	Constructor func() Decoder
+}{
+	{
+		Match:       util.IsGif,
+		Constructor: NewGifDeCoder,
+	},
+	{
+		Match:       util.IsSupportedImage,
+		Constructor: NewImageDecoder,
+	},
+}
+
 // NewTerminalPlayer is factory method to create the player base on file type
 func NewDecoder(filename string) (decoder Decoder, supported bool) {
-	if util.IsGif(filename) {
-		return NewGifDeCoder(), true
+	for _, matcher := range supportedDecoderMatchers {
+		if matcher.Match(filename) {
+			return matcher.Constructor(), true
+		}
 	}
 	return nil, false
 }
