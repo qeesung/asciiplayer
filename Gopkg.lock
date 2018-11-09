@@ -37,6 +37,25 @@
   revision = "e2365dfdc4a05e4b8299a783240d4a7d5a65d4e4"
 
 [[projects]]
+  branch = "master"
+  digest = "1:cde3502ff38bf880c3a783acc5b48754aa509c651c4902c68726d2769883e9de"
+  name = "github.com/gosuri/uilive"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "ac356e6e42cd31fcef8e6aec13ae9ed6fe87713e"
+
+[[projects]]
+  branch = "master"
+  digest = "1:f6ae4b3c3d4411bffa0b8045fff29974e1eb866e1828786972059f89a130aecf"
+  name = "github.com/gosuri/uiprogress"
+  packages = [
+    ".",
+    "util/strutil",
+  ]
+  pruneopts = "UT"
+  revision = "d0567a9d84a1c40dd7568115ea66f4887bf57b33"
+
+[[projects]]
   digest = "1:870d441fe217b8e689d7949fef6e43efbc787e50f200cb1e70dbca9204a1d6be"
   name = "github.com/inconshreveable/mousetrap"
   packages = ["."]
@@ -185,13 +204,13 @@
   input-imports = [
     "github.com/fogleman/gg",
     "github.com/golang/freetype/truetype",
+    "github.com/gosuri/uiprogress",
     "github.com/pkg/errors",
     "github.com/qeesung/image2ascii/ascii",
     "github.com/qeesung/image2ascii/convert",
     "github.com/sirupsen/logrus",
     "github.com/spf13/cobra",
     "github.com/stretchr/testify/assert",
-    "golang.org/x/image/draw",
     "golang.org/x/image/font/gofont/gomono",
     "gopkg.in/go-playground/colors.v1",
   ]
