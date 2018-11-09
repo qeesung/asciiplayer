@@ -58,16 +58,16 @@ Use "asciiplayer [command] --help" for more information about a command.
 
 Play command only work in terminal, decoding the gif or video info multi frames and convert the frames to ASCII character matrix, finally, output the matrix to stdout at a certain frequency.
 
-### examples
+More detail please run `asciiplayer play --help`
+
+### Play examples
 
 Play the gif， and be able to match the screen size.
-
 ```bash
 asciiplayer play demo.gif
 ```
 
 Zoom to the original 1/10 and play it.
-
 ```bash
 asciiplayer play demo.gif -r 0.1
 ```
@@ -75,4 +75,27 @@ asciiplayer play demo.gif -r 0.1
 Zoom to the fixed width and fixed height and play it
 ```bash
 asciiplayer play demo.gif -w 100 -h 40
+```
+
+## Command encode
+
+Encode command can convert gif or video to a ascii gif or video.
+
+More detail please run `asciiplayer encode --help`
+
+### Encode examples
+
+Encode gif image to ascii gif image 
+```bash
+asciiplayer encode demo.gif -o output.gif
+```
+
+Encode gif image to ascii gif image with custom font size
+```bash
+asciiplayer encode demo.gif -o output.gif --font_size=5
+```
+
+Zoom to the original 1/10, then encode gif image to ascii gif image
+```bash
+asciiplayer encode demo.gif -o output.gif -r 0.1
 ```
