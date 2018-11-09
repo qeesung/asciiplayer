@@ -10,6 +10,17 @@
 
 ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
 
+## Table of contents
+
+- [Features](#features)
+- [How it workds](#how-it-works)
+- [CLI usage](#cli-usage)
+    - [Command Play](#command-play)
+    - [Command Encode](#command-encode)
+    - [Command Server](#command-server)
+- [Library usage](#library-usage)
+- [Examples](#examples)
+
 ## Features
 
 ## How it works?
@@ -145,3 +156,4 @@ asciiplayer server demo.png
 
 Please access the godoc https://godoc.org/github.com/qeesung/asciiplayer
 
+## Examples
