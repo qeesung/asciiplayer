@@ -31,14 +31,7 @@ func (terminalPlayer *GifTerminalPlayer) Play(filename string, playOptions *Play
 		log.Fatal(err)
 	}
 
-	convertOptions := convert.DefaultOptions
-	convertOptions.StretchedScreen = playOptions.StretchedScreen
-	convertOptions.Reversed = playOptions.Reversed
-	convertOptions.FitScreen = playOptions.FitScreen
-	convertOptions.Ratio = playOptions.Ratio
-	convertOptions.FixedWidth = playOptions.FixedWidth
-	convertOptions.FixedHeight = playOptions.FixedHeight
-	convertOptions.Colored = playOptions.Colored
+	convertOptions := playOptions.Options
 	delay := playOptions.Delay
 
 	stdout := os.Stdout

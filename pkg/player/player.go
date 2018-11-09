@@ -22,10 +22,26 @@ type Player interface {
 	Play(filename string, playOptions *PlayOptions)
 }
 
+var supportedPlayerMatchers = []struct {
+	Match       func(string) bool
+	Constructor func() Player
+}{
+	{
+		Match:       util.IsGif,
+		Constructor: NewGifTerminalPlayer,
+	},
+	{
+		Match:       util.IsSupportedImage,
+		Constructor: NewImageTerminalPlayer,
+	},
+}
+
 // NewTerminalPlayer is factory method to create the player base on file type
 func NewTerminalPlayer(filename string) (player Player, supported bool) {
-	if util.IsGif(filename) {
-		return NewGifTerminalPlayer(), true
+	for _, matcher := range supportedPlayerMatchers {
+		if matcher.Match(filename) {
+			return matcher.Constructor(), true
+		}
 	}
 	return nil, false
 }
