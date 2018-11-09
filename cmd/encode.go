@@ -123,5 +123,13 @@ func (encodeCommand *EncodeCommand) parseFlags() (convertOptions convert.Options
 }
 
 func encodeExample() string {
-	return `$ asciiplay encode input.gif -o output.gif`
+	return `Encode gif image to ascii gif image
+$ asciiplayer encode demo.gif -o output.gif
+
+Encode gif image to ascii gif image with custom font size
+$ asciiplayer encode demo.gif -o output.gif --font_size=5
+
+Zoom to the original 1/10, then encode gif image to ascii gif image
+$ asciiplayer encode demo.gif -o output.gif -r 0.1
+`
 }
