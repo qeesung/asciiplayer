@@ -10,6 +10,10 @@
 
 ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
 
+## Features
+
+## How it works?
+
 ## Installation
 
 ```bash
