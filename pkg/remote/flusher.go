@@ -5,6 +5,7 @@ import (
 	"github.com/pkg/errors"
 	"github.com/qeesung/asciiplayer/pkg/player"
 	"github.com/qeesung/asciiplayer/pkg/util"
+	"github.com/qeesung/image2ascii/convert"
 	"net/http"
 	"time"
 )
@@ -16,7 +17,7 @@ type FlushHandler interface {
 
 var supportedFlushHandlerMatchers = []struct {
 	Match       func(string) bool
-	Constructor func(string) FlushHandler
+	Constructor func(string, *convert.Options) FlushHandler
 }{
 	{
 		Match:       util.IsGif,
@@ -29,10 +30,10 @@ var supportedFlushHandlerMatchers = []struct {
 }
 
 // NewFlushHandler is factory method to create flush handler
-func NewFlushHandler(filename string) (handler FlushHandler, supported bool) {
+func NewFlushHandler(filename string, options *convert.Options) (handler FlushHandler, supported bool) {
 	for _, matcher := range supportedFlushHandlerMatchers {
 		if matcher.Match(filename) {
-			return matcher.Constructor(filename), true
+			return matcher.Constructor(filename, options), true
 		}
 	}
 	return nil, false

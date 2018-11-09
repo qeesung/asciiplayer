@@ -11,13 +11,15 @@ import (
 
 type ImageFlushHandler struct {
 	BaseFlushHandler
-	Filename   string
-	ImageCache string
+	Filename       string
+	ImageCache     string
+	convertOptions convert.Options
 }
 
-func NewImageFlusherHandler(filename string) FlushHandler {
+func NewImageFlusherHandler(filename string, convertOptions *convert.Options) FlushHandler {
 	return &ImageFlushHandler{
-		Filename: filename,
+		Filename:       filename,
+		convertOptions: *convertOptions,
 	}
 }
 
@@ -39,7 +41,7 @@ func (handler *ImageFlushHandler) Init() error {
 		return errors.New("extract too many frames from image")
 	}
 
-	convertOptions := convert.DefaultOptions
+	convertOptions := handler.convertOptions
 	converter := convert.NewImageConverter()
 
 	logrus.Debugf("Converting the image %s...", handler.Filename)

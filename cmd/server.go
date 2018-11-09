@@ -35,7 +35,7 @@ server command setup a server, and other can access the ascii image remotely`,
 
 func (serverCommand *ServerCommand) server(args []string) error {
 	filename := args[0]
-	flushHandler, supported := remote.NewFlushHandler(filename)
+	flushHandler, supported := remote.NewFlushHandler(filename, &serverCommand.Options)
 	if !supported {
 		return errors.New("not supported file type")
 	}

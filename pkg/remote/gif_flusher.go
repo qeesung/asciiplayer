@@ -8,17 +8,19 @@ import (
 	"net/http"
 )
 
-func NewGifFlushHandler(filename string) FlushHandler {
+func NewGifFlushHandler(filename string, convertOptions *convert.Options) FlushHandler {
 	return &GifFlushHandler{
-		Filename:   filename,
-		FrameCache: make([]string, 0),
+		Filename:       filename,
+		FrameCache:     make([]string, 0),
+		convertOptions: *convertOptions,
 	}
 }
 
 type GifFlushHandler struct {
 	BaseFlushHandler
-	Filename   string
-	FrameCache []string
+	Filename       string
+	FrameCache     []string
+	convertOptions convert.Options
 }
 
 func (handler *GifFlushHandler) Init() error {
@@ -33,7 +35,7 @@ func (handler *GifFlushHandler) Init() error {
 		return err
 	}
 
-	convertOptions := convert.DefaultOptions
+	convertOptions := handler.convertOptions
 	converter := convert.NewImageConverter()
 
 	for _, frame := range frames {
