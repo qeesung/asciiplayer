@@ -74,5 +74,13 @@ func (playCommand *PlayCommand) addFlags() {
 }
 
 func playExample() string {
-	return `$ asciiplay play hello.gif`
+	return `Play the gif， and be able to match the screen size.
+$ asciiplayer play demo.gif
+
+Zoom to the original 1/10 and play it.
+$ asciiplayer play demo.gif -r 0.1
+
+Zoom to the fixed width and fixed height and play it
+$ asciiplayer play demo.gif -w 100 -h 40
+`
 }
