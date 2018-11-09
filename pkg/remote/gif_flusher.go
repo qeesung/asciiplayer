@@ -4,23 +4,25 @@ import (
 	"github.com/pkg/errors"
 	"github.com/qeesung/asciiplayer/pkg/decoder"
 	"github.com/qeesung/image2ascii/convert"
+	"github.com/sirupsen/logrus"
 	"net/http"
 )
 
 func NewGifFlushHandler(filename string) FlushHandler {
-	return &GifFlusherHandler{
+	return &GifFlushHandler{
 		Filename:   filename,
 		FrameCache: make([]string, 0),
 	}
 }
 
-type GifFlusherHandler struct {
+type GifFlushHandler struct {
 	BaseFlushHandler
 	Filename   string
 	FrameCache []string
 }
 
-func (handler *GifFlusherHandler) Init() error {
+func (handler *GifFlushHandler) Init() error {
+	logrus.Debug("Init the gif flush handler...")
 	gifDecoder, supported := decoder.NewDecoder(handler.Filename)
 	if !supported {
 		return errors.New("not supported file type")
@@ -41,7 +43,7 @@ func (handler *GifFlusherHandler) Init() error {
 	return nil
 }
 
-func (handler *GifFlusherHandler) HandlerFunc() func(w http.ResponseWriter, r *http.Request) {
+func (handler *GifFlushHandler) HandlerFunc() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		for {
 			for _, frameStr := range handler.FrameCache {

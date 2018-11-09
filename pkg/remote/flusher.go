@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/pkg/errors"
 	"github.com/qeesung/asciiplayer/pkg/player"
+	"github.com/qeesung/asciiplayer/pkg/util"
 	"net/http"
 	"time"
 )
@@ -11,6 +12,30 @@ import (
 type FlushHandler interface {
 	Init() error
 	HandlerFunc() func(w http.ResponseWriter, r *http.Request)
+}
+
+var supportedFlushHandlerMatchers = []struct {
+	Match       func(string) bool
+	Constructor func(string) FlushHandler
+}{
+	{
+		Match:       util.IsGif,
+		Constructor: NewGifFlushHandler,
+	},
+	{
+		Match:       util.IsSupportedImage,
+		Constructor: NewImageFlusherHandler,
+	},
+}
+
+// NewFlushHandler is factory method to create flush handler
+func NewFlushHandler(filename string) (handler FlushHandler, supported bool) {
+	for _, matcher := range supportedFlushHandlerMatchers {
+		if matcher.Match(filename) {
+			return matcher.Constructor(filename), true
+		}
+	}
+	return nil, false
 }
 
 type BaseFlushHandler struct {
