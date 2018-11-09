@@ -44,7 +44,7 @@ func (cli *Cli) InitLog() {
 
 	formatter := &logrus.TextFormatter{
 		FullTimestamp:   true,
-		TimestampFormat: time.RFC3339Nano,
+		TimestampFormat: time.RFC3339,
 	}
 	logrus.SetFormatter(formatter)
 }
