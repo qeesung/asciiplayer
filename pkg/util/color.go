@@ -5,6 +5,7 @@ import (
 	"image/color"
 )
 
+// ConvertHexToRGB convert a color hex string to RGB color object
 func ConvertHexToRGB(hex string) (color.RGBA, error) {
 	if hex, err := colors.ParseHEX(hex); err == nil {
 		return color.RGBA{
