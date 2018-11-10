@@ -6,6 +6,7 @@ import (
 	"github.com/qeesung/asciiplayer/pkg/remote"
 	"github.com/qeesung/asciiplayer/pkg/util"
 	"github.com/qeesung/image2ascii/convert"
+	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
 	"github.com/ttacon/chalk"
 	"net/http"
@@ -58,13 +59,14 @@ func (serverCommand *ServerCommand) server(args []string) error {
 	}
 
 	http.HandleFunc("/", flushHandler.HandlerFunc())
-	addr := serverCommand.Host + ":" + serverCommand.Port
 
 	err = serverCommand.printServerAddress()
 	if err != nil {
 		return err
 	}
 
+	addr := serverCommand.Host + ":" + serverCommand.Port
+	logrus.Debug("Going to listen and serve on " + addr)
 	err = http.ListenAndServe(addr, nil)
 	if err != nil {
 		return err
