@@ -1,3 +1,6 @@
+// remote package define the operations that how to flush the ASCII image
+// to remote client, it would be different flush handler for different picture
+// or video type.
 package remote
 
 import (
