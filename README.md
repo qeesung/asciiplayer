@@ -16,7 +16,7 @@
                    /_/   \_\____/ \____|___|___|_|   |_____/_/   \_\_| |_____|_| \_\
 ```
 
-ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide command-line tools for easy use.
+ASCIIPlayer is a library and tool that can play gif and video into ASCII mode and can convert gif and video into ASCII picture. 
 
 ## Table of contents
 
