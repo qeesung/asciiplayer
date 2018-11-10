@@ -6,6 +6,7 @@ import (
 	"github.com/qeesung/image2ascii/convert"
 	"github.com/sirupsen/logrus"
 	"net/http"
+	"strings"
 )
 
 // GifFlushHandler extends from BaseFlushHandler, and responsible for flushing the gif
@@ -53,6 +54,10 @@ func (handler *GifFlushHandler) Init() error {
 // HandlerFunc for gif flush handler flush the cached ASCII string slices slice by slice at a centian frequency
 func (handler *GifFlushHandler) HandlerFunc() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		if !strings.Contains(r.Header.Get("User-Agent"), "curl") {
+			http.Redirect(w, r, "https://github.com/qeesung/asciiplayer", http.StatusFound)
+			return
+		}
 		for {
 			for _, frameStr := range handler.FrameCache {
 				handler.Flush(w, frameStr)

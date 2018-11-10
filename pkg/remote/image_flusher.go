@@ -7,10 +7,11 @@ import (
 	"github.com/qeesung/image2ascii/convert"
 	"github.com/sirupsen/logrus"
 	"net/http"
+	"strings"
 )
 
 // ImageFlushHandler extends the BaseFlushHandler and responsible for flush the
-// ASCII image to remote client. 
+// ASCII image to remote client.
 type ImageFlushHandler struct {
 	BaseFlushHandler
 	Filename       string
@@ -26,7 +27,7 @@ func NewImageFlusherHandler(filename string, convertOptions *convert.Options) Fl
 	}
 }
 
-// Init for ImageFlushHandler init the image flush handler that is responsible for 
+// Init for ImageFlushHandler init the image flush handler that is responsible for
 // decoding the image and convert the image to ASCII image, then cache the ASCII image.
 func (handler *ImageFlushHandler) Init() error {
 	logrus.Debug("Init the image flush handler...")
@@ -58,6 +59,10 @@ func (handler *ImageFlushHandler) Init() error {
 // HandlerFunc for image flush handler return a simple handler function that write the cached ASCII image to remote client.
 func (handler *ImageFlushHandler) HandlerFunc() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
+		if !strings.Contains(r.Header.Get("User-Agent"), "curl") {
+			http.Redirect(w, r, "https://github.com/qeesung/asciiplayer", http.StatusFound)
+			return
+		}
 		fmt.Fprintln(w, handler.ImageCache)
 	}
 }

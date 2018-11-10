@@ -1,6 +1,6 @@
 // remote package define the operations that how to flush the ASCII image
 // to remote client, it would be different flush handler for different picture
-// or video type.
+// or video type. Inspiration comes from https://github.com/HFO4/plus1s.live.
 package remote
 
 import (
@@ -20,7 +20,7 @@ type FlushHandler interface {
 }
 
 // supportedFlushHandlerMatchers register the supported flush handler
-// and if the Match function is return true, just call the constructor  
+// and if the Match function is return true, just call the constructor
 // function to build the flusher handler.
 var supportedFlushHandlerMatchers = []struct {
 	Match       func(string) bool
