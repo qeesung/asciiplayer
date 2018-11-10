@@ -28,6 +28,8 @@ ASCIIPlayer is a library and tool that can play picture(png,jpeg,gif) and video(
     - [Command Server](#command-server)
 - [Library usage](#library-usage)
 - [Examples](#examples)
+- [Todo](#todo)
+- [License](#license)
 
 ## Features
 
