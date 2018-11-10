@@ -34,7 +34,7 @@ ASCIIPlayer is a library and tool that can play picture(png,jpeg,gif) and video(
 - Support playing a PNG, JPEG, GIF type picture in the terminal in ASCII mode, as well as MP4, AVI and many other types of video(playing video still working in progress). More details can be accessed at [play](#command-play)
 - Support encoding a common PNG, JPEG, GIF type picture into a ASCII picture, as well as MP4, AVI and many other types of video
 (encoding video still working in progress). More details can be accessed at [encode](#command-encode)
-- Support for building a HTTP server, and you can share your ASCII picture to others(servering vedio still working in progress). More details can be accessed at [server](#command-server)
+- Support for building a HTTP server, and you can share your ASCII picture and video to others(servering vedio still working in progress). More details can be accessed at [server](#command-server)
 
 ## How it works?
 
