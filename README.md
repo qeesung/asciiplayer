@@ -21,7 +21,7 @@ ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide
 ## Table of contents
 
 - [Features](#features)
-- [How it workds](#how-it-works)
+- [How it works?](#how-it-works)
 - [CLI usage](#cli-usage)
     - [Command Play](#command-play)
     - [Command Encode](#command-encode)
@@ -30,6 +30,11 @@ ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide
 - [Examples](#examples)
 
 ## Features
+
+- Support playing a PNG, JPEG, GIF type picture in the terminal in ASCII mode, as well as MP4, AVI and many other types of video(playing video still working in progress). More details can be accessed at [play](#command-play)
+- Support encoding a common PNG, JPEG, GIF type picture into a ASCII picture, as well as MP4, AVI and many other types of video
+(encoding video still working in progress). More details can be accessed at [encode](#command-encode)
+- Support for building a HTTP server, and you can share your ASCII picture to others(servering vedio still working in progress). More details can be accessed at [server](#command-server)
 
 ## How it works?
 
