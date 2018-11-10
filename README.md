@@ -33,6 +33,25 @@ ASCIIPlayer is a library that convert gif/video into ASCII gif/video and provide
 
 ## How it works?
 
+```
+                 +----------------+                                                   +---------+
+                 |                |                                                   |         |
+          +------> Gif Decoder    |                                               +---> Encoder +---> file
+          |      |                |                                               |   |         |
+          |      +----------------+                                               |   +---------+
+          |      +----------------+                  +-------------+              |   +---------+
+          |      |                |                  |             |              |   |         |
+Input File+------> Image Decoder  +--> Frames +----->+ Image2ASCII +->ASCII Image+----> Player  +---> stdout
+          |      |                |                  |             |              |   |         |
+          |      +----------------+                  +-------------+              |   +---------+
+          |      +----------------+                                               |   +---------+
+          |      |                |                                               |   |         |
+          +------> Video Decoder  |                                               +---> Server  +---> socket
+                 |                |                                                   |         |
+                 +----------------+                                                   +---------+
+
+```
+
 ## Installation
 
 ```bash
