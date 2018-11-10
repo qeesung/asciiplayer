@@ -18,6 +18,9 @@
 
 ASCIIPlayer is a library and tool that can play picture(png,jpeg,gif) and video(mp4,avi) in ASCII mode and can convert the picture and video into ASCII picture. 
 
+![fire](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_fire.gif?raw=true#center)  
+
+
 ## Table of contents
 
 - [Features](#features)
