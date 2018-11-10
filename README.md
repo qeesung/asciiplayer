@@ -40,6 +40,15 @@ ASCIIPlayer is a library and tool that can play picture(png,jpeg,gif) and video(
 
 ## How it works?
 
+ASCIIPlayer is base on [Image2ASCII](https://github.com/qeesung/image2ascii)(which is a library that converts image into ASCII image). 
+
+- Firstly, we need to decode the input media (picture, gif, vedio) into multi frames, different media use different decoders. For example, if you input a gif file, we will use GifDecoder to decode the gif into multi frames.
+- Secondly, build a Image2ASCII converter that can convert the pictures into ASCII images (it would be a long string , or a ascii pixel matrix).
+- Finally, Display the ASCII images in different ways, there are three ways to display the ASCII images:
+  - (**Encode Mode**) Display in a file, we need to render the ascii pixel matrix into a file, just draw it pixel by pixel. 
+  - (**Play Mode**) Display in the terminal, simplely output the ascii image(string type) to the stdout at a certain frequency.
+  - (**Server Mode**) Just like display in the terminal, but it displays at remote clinet, we need to setup a http server, and then flush the ascii image to remote client, only when the response received by the client is exported to the terminal can it work properly.
+
 ```
                  +---------------+                                                  +---------+
                  |               |                                                  |         |
