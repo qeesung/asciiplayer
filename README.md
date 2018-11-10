@@ -48,7 +48,7 @@ ASCIIPlayer is a library and tool that can play picture(png,jpeg,gif) and video(
           |      +---------------+                                              |   +---------+
           |      +---------------+                 +-------------+              |   +---------+
           |      |               |                 |             |              |   |         |
-Input File+------> Image Decoder +---> Frames +--->+ Image2ASCII +->ASCII Image+----> Player  +---> stdout
+Input File+------> Image Decoder +---> Frames +-->+ Image2ASCII +->ASCII Frames+----> Player  +---> stdout
           |      |               |                 |             |              |   |         |
           |      +---------------+                 +-------------+              |   +---------+
           |      +---------------+                                              |   +---------+
