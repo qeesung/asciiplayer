@@ -188,3 +188,13 @@ asciiplayer server demo.png
 Please access the godoc https://godoc.org/github.com/qeesung/asciiplayer
 
 ## Examples
+
+
+## Todo
+
+- Support playing, encoding, servering video
+- Accelerating the encoding process
+
+## License
+
+This project is under the MIT License. See the [LICENSE](https://github.com/qeesung/asciiplayer/blob/master/LICENSE) file for the full license text.
