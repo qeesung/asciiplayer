@@ -97,7 +97,7 @@ func (encodeCommand *EncodeCommand) addFlags() {
 	flagSet.Float64VarP(&encodeCommand.Delay, "delay", "d", 0.15, "Play delay duration between two frames")
 	flagSet.StringVarP(&encodeCommand.OutputFilename, "out", "o", "", "Encode output filename")
 	encodeCommand.cmd.MarkFlagRequired("out")
-	flagSet.IntVarP(&encodeCommand.FontSize, "font_size", "z", 20, "Encode ASCII font size(pt)")
+	flagSet.IntVarP(&encodeCommand.FontSize, "font_size", "z", 15, "Encode ASCII font size(pt)")
 	flagSet.StringVarP(&encodeCommand.BackGroundColor, "bg", "j", "#000000", "Encode ASCII background color")
 	flagSet.StringVarP(&encodeCommand.ForeGroundColor, "fg", "k", "#FFFFFF", "Encode ASCII foreground color")
 }
