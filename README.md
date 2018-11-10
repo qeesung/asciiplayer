@@ -203,6 +203,19 @@ Please access the godoc https://godoc.org/github.com/qeesung/asciiplayer
 
 ## Examples
 
+Encoding gif sample
+
+| Raw Image | ASCII Image|
+|:--:|:--:|
+|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/fire.gif?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_fire.gif?raw=true)|
+|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/eye.gif?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_eye.gif?raw=true)|
+|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/pounch.gif?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_pounch.gif?raw=true)|
+
+Encoding png sample
+
+| Raw Image | ASCII Image|
+|:--:|:--:|
+|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/zolo.jpg?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_zolo.png?raw=true)|
 
 ## Todo
 
