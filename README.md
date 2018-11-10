@@ -211,7 +211,8 @@ Encoding gif sample
 |![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/eye.gif?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_eye.gif?raw=true)|
 |![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/pounch.gif?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_pounch.gif?raw=true)|
 
-Encoding png sample
+
+Encoding jpeg sample
 
 | Raw Image | ASCII Image|
 |:--:|:--:|
