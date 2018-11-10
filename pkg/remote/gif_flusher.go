@@ -8,6 +8,16 @@ import (
 	"net/http"
 )
 
+// GifFlushHandler extends from BaseFlushHandler, and responsible for flushing the gif
+// frames to remote client.
+type GifFlushHandler struct {
+	BaseFlushHandler
+	Filename       string
+	FrameCache     []string
+	convertOptions convert.Options
+}
+
+// NewGifFlushHandler create a new gif flush handler
 func NewGifFlushHandler(filename string, convertOptions *convert.Options) FlushHandler {
 	return &GifFlushHandler{
 		Filename:       filename,
@@ -16,13 +26,8 @@ func NewGifFlushHandler(filename string, convertOptions *convert.Options) FlushH
 	}
 }
 
-type GifFlushHandler struct {
-	BaseFlushHandler
-	Filename       string
-	FrameCache     []string
-	convertOptions convert.Options
-}
-
+// Init for gif flush handler responsible for decoding the gif to frames
+// then decoding the frames to ASCII string slices, then cache results, reduce resource consumption.
 func (handler *GifFlushHandler) Init() error {
 	logrus.Debug("Init the gif flush handler...")
 	gifDecoder, supported := decoder.NewDecoder(handler.Filename)
@@ -45,6 +50,7 @@ func (handler *GifFlushHandler) Init() error {
 	return nil
 }
 
+// HandlerFunc for gif flush handler flush the cached ASCII string slices slice by slice at a centian frequency
 func (handler *GifFlushHandler) HandlerFunc() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		for {
