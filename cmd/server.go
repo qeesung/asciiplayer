@@ -4,8 +4,10 @@ import (
 	"errors"
 	"fmt"
 	"github.com/qeesung/asciiplayer/pkg/remote"
+	"github.com/qeesung/asciiplayer/pkg/util"
 	"github.com/qeesung/image2ascii/convert"
 	"github.com/spf13/cobra"
+	"github.com/ttacon/chalk"
 	"net/http"
 )
 
@@ -57,7 +59,12 @@ func (serverCommand *ServerCommand) server(args []string) error {
 
 	http.HandleFunc("/", flushHandler.HandlerFunc())
 	addr := serverCommand.Host + ":" + serverCommand.Port
-	fmt.Println("Server available on : http://" + addr)
+
+	err = serverCommand.printServerAddress()
+	if err != nil {
+		return err
+	}
+
 	err = http.ListenAndServe(addr, nil)
 	if err != nil {
 		return err
@@ -79,6 +86,30 @@ func (serverCommand *ServerCommand) addFlags() {
 	flagSet.Float64VarP(&serverCommand.Delay, "delay", "d", 0.15, "Play delay duration between two frames")
 	flagSet.StringVarP(&serverCommand.Host, "host", "H", "0.0.0.0", "Server host address")
 	flagSet.StringVarP(&serverCommand.Port, "port", "p", "8080", "Server host port")
+}
+
+func (serverCommand *ServerCommand) printServerAddress() (err error) {
+	serverAddrStyle := chalk.Green.NewStyle().
+		WithBackground(chalk.Black).
+		WithTextStyle(chalk.Bold).Style
+
+	fmt.Println(Title)
+	fmt.Println("Server available on :")
+	if serverCommand.Host == "0.0.0.0" || serverCommand.Host == "" {
+		serverIPList, err := util.GetIPList()
+		if err != nil {
+			return err
+		}
+		for _, ipAddr := range serverIPList {
+			fmt.Println(serverAddrStyle(fmt.Sprintf("http://%s:%s", ipAddr, serverCommand.Port)))
+		}
+	} else {
+		fmt.Println(serverAddrStyle(fmt.Sprintf("http://%s:%s", serverCommand.Host, serverCommand.Port)))
+	}
+	fmt.Println(chalk.Blue.Color(fmt.Sprintf("Access from remote with command : `curl http://hostname:%s`",
+		serverCommand.Port)))
+	fmt.Println("Hit CTRL-C to stop the server")
+	return
 }
 
 func serverExample() string {
