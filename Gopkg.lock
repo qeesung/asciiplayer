@@ -148,6 +148,14 @@
   version = "v1.2.2"
 
 [[projects]]
+  digest = "1:33092b366cfcc395fae86161d7caa4c7ffef4f93ee43113c1c1e28fc0dc71972"
+  name = "github.com/ttacon/chalk"
+  packages = ["."]
+  pruneopts = "UT"
+  revision = "76b3c8b611dea8f83e49e9ce81fc2b189e0ef3d2"
+  version = "v0.1"
+
+[[projects]]
   digest = "1:9b4fd49bb5908e00ecb36f3199008562d5c9fa7b3ddee554465f4d8bfde52d4c"
   name = "github.com/wayneashleyberry/terminal-dimensions"
   packages = ["."]
@@ -211,6 +219,7 @@
     "github.com/sirupsen/logrus",
     "github.com/spf13/cobra",
     "github.com/stretchr/testify/assert",
+    "github.com/ttacon/chalk",
     "golang.org/x/image/font/gofont/gomono",
     "gopkg.in/go-playground/colors.v1",
   ]

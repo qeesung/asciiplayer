@@ -52,3 +52,7 @@
 [[constraint]]
   branch = "master"
   name = "github.com/gosuri/uiprogress"
+
+[[constraint]]
+  name = "github.com/ttacon/chalk"
+  version = "0.1.0"
