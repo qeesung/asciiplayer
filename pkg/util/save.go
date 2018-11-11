@@ -1,4 +1,4 @@
-// util package contain some reused tool functions
+// Package util contain some reused tool functions
 package util
 
 import (

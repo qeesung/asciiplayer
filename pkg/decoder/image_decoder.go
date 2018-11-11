@@ -6,13 +6,17 @@ import (
 	"os"
 )
 
+// NewImageDecoder create a new ImageDecoder
 func NewImageDecoder() Decoder {
 	return &ImageDecoder{}
 }
 
+// ImageDecoder is responsible for decoding image
 type ImageDecoder struct {
 }
 
+// Decode for ImageDecoder decoding a image and return a frame slice that only
+// contain one frame.
 func (decoder *ImageDecoder) Decode(reader io.Reader, progress chan<- int) (frames []image.Image, err error) {
 	if progress != nil {
 		defer close(progress)
@@ -30,6 +34,7 @@ func (decoder *ImageDecoder) Decode(reader io.Reader, progress chan<- int) (fram
 	return []image.Image{img}, nil
 }
 
+// DecodeFromFile decode the file to frames by filename
 func (decoder *ImageDecoder) DecodeFromFile(filename string, progress chan<- int) (frames []image.Image, err error) {
 	f, err := os.Open(filename)
 	if err != nil {

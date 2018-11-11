@@ -1,4 +1,4 @@
-// encoder package responsible for merging multi frames to a gif or video
+// Package encoder responsible for merging multi frames to a gif or video
 package encoder
 
 import (
@@ -16,16 +16,19 @@ type Encoder interface {
 	EncodeToFile(filename string, frames []image.Image, progress chan<- int) error
 }
 
+// EncodeOptions define the required options to encode
 type EncodeOptions struct {
 	convert.Options
 	Delay time.Duration
 }
 
+// DefaultEncodeOptions is default and recommend options for encoding
 var DefaultEncodeOptions = EncodeOptions{
 	Options: convert.DefaultOptions,
 	Delay:   time.Duration(100) * time.Millisecond,
 }
 
+// supportedEncoderMatcher define the supported encoders for different file type.
 var supportedEncoderMatcher = []struct {
 	Match       func(string) bool
 	Constructor func() Encoder
@@ -40,6 +43,7 @@ var supportedEncoderMatcher = []struct {
 	},
 }
 
+// NewEncoder is a factory method to create a new encoder by file type
 func NewEncoder(filename string) (encoder Encoder, supported bool) {
 	for _, matcher := range supportedEncoderMatcher {
 		if matcher.Match(filename) {

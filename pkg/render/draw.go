@@ -1,4 +1,4 @@
-// render package convert the char pixel matrix that converted from
+// Package render convert the char pixel matrix that converted from
 // the image2ascii to a png image that draw all ascii chars to the image
 package render
 
@@ -57,6 +57,7 @@ func NewImageDrawer() Drawer {
 	return &ImageDrawer{}
 }
 
+// BatchConvertThenDraw batch draw the images and output the images
 func (drawer *ImageDrawer) BatchConvertThenDraw(frames []image.Image,
 	convertOptions convert.Options, drawOptions DrawOptions, progress chan<- int) (asciiImages []image.Image, err error) {
 	if progress != nil {

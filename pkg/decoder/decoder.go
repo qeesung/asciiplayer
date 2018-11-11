@@ -1,4 +1,4 @@
-// decoder package is responsible for split the video or gif to frames
+// Package decoder is responsible for split the video or gif to frames
 package decoder
 
 import (
@@ -28,7 +28,7 @@ var supportedDecoderMatchers = []struct {
 	},
 }
 
-// NewTerminalPlayer is factory method to create the player base on file type
+// NewDecoder is factory method to create the player base on file type
 func NewDecoder(filename string) (decoder Decoder, supported bool) {
 	for _, matcher := range supportedDecoderMatchers {
 		if matcher.Match(filename) {

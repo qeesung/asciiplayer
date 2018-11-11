@@ -5,10 +5,12 @@ import (
 	"github.com/spf13/cobra"
 )
 
+// VersionCommand is responsible show the version
 type VersionCommand struct {
 	baseCommand
 }
 
+// Init for VersionCommand create a version command
 func (versionCommand *VersionCommand) Init() {
 	versionCommand.cmd = &cobra.Command{
 		Use:   "version",

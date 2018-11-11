@@ -8,20 +8,24 @@ import (
 
 const ClearScreen = "\033[H\033[2J"
 
+// PlayOptions define some options for playing
 type PlayOptions struct {
 	convert.Options
 	Delay time.Duration
 }
 
+// DefaultPlayOptions is the default and recommend options for playing
 var DefaultPlayOptions = PlayOptions{
 	Options: convert.DefaultOptions,
 	Delay:   time.Duration(100) * time.Millisecond,
 }
 
+// Player define the default operations for playing
 type Player interface {
 	Play(filename string, playOptions *PlayOptions)
 }
 
+// supportedPlayerMatchers define the support player for different file type
 var supportedPlayerMatchers = []struct {
 	Match       func(string) bool
 	Constructor func() Player

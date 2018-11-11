@@ -1,4 +1,4 @@
-// progress package show the progress bar when deal some busy
+// Package progress show the progress bar when deal some busy
 // things, and can register new bar then wait all bars finished.
 package progress
 
@@ -26,7 +26,7 @@ func (*WaitingBar) Stop() {
 	uiprogress.Stop()
 }
 
-// AddBar add a new bar, then return a notifer channel that can report the 
+// AddBar add a new bar, then return a notifer channel that can report the
 // progress back, then progress bar will be updated in another goroutine.
 func (waitingBar *WaitingBar) AddBar(barName string, steps int) chan<- int {
 	notifier := make(chan int)

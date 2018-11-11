@@ -8,11 +8,13 @@ import (
 	"os"
 )
 
+// ImageTerminalPlayer responsible for playing the image in the terminal
 type ImageTerminalPlayer struct {
 	decoder   decoder.Decoder
 	converter *convert.ImageConverter
 }
 
+// NewImageTerminalPlayer create a new ImageTerminalPlayer object
 func NewImageTerminalPlayer() Player {
 	return &ImageTerminalPlayer{
 		decoder:   decoder.NewImageDecoder(),
@@ -20,6 +22,7 @@ func NewImageTerminalPlayer() Player {
 	}
 }
 
+// Play for ImageTerminalPlayer flush the image to the stdout
 func (player *ImageTerminalPlayer) Play(filename string, playOptions *PlayOptions) {
 	// decode the file first
 	frames, err := player.decoder.DecodeFromFile(filename, nil)

@@ -1,8 +1,12 @@
 package cmd
 
+// CommandBuilder responsible for building root command
+// and register all sub commands to the root command
 type CommandBuilder struct {
 }
 
+// Build create root command and register all sub command
+// and return the cli object that contain the root command
 func (builder *CommandBuilder) Build() *Cli {
 	cli := NewCli()
 

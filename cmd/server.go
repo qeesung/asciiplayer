@@ -12,6 +12,8 @@ import (
 	"net/http"
 )
 
+// ServerCommand define the server command that responsible for serving a http server
+// for ASCII image.
 type ServerCommand struct {
 	baseCommand
 	convert.Options
@@ -20,6 +22,7 @@ type ServerCommand struct {
 	Port  string
 }
 
+// Init for ServerCommand create the server command
 func (serverCommand *ServerCommand) Init() {
 	serverCommand.cmd = &cobra.Command{
 		Use:   "server",
@@ -46,6 +49,7 @@ $ curl http://hostname:8080
 	serverCommand.addFlags()
 }
 
+// server for ServerCommand setup a http server that can share the ASCII image to remote client
 func (serverCommand *ServerCommand) server(args []string) error {
 	filename := args[0]
 	flushHandler, supported := remote.NewFlushHandler(filename, &serverCommand.Options)
