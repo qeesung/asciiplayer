@@ -11,6 +11,7 @@ import (
 	"github.com/qeesung/image2ascii/convert"
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/cobra"
+	"github.com/ttacon/chalk"
 )
 
 type EncodeCommand struct {
@@ -82,7 +83,7 @@ func (encodeCommand *EncodeCommand) encode(args []string) error {
 	logrus.Debugf("Encoding the frames to output file %s...", outputFilename)
 	outputEncoder.EncodeToFile(outputFilename, asciiImages, encodeNotifier)
 	waitingBar.Wait()
-	fmt.Printf("File saved to %s\n", outputFilename)
+	fmt.Printf("File saved to %s\n", chalk.Green.Color(outputFilename))
 	return nil
 }
 
