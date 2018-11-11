@@ -97,7 +97,7 @@ Available Commands:
   encode      Encode gif or video to ascii gif or video
   help        Help about any command
   play        Play the gif and video in ASCII mode
-  server      Server command setup a server
+  server      Server command setup a http share server
   version     Show the version
 
 Flags:
