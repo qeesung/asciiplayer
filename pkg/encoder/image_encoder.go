@@ -34,9 +34,8 @@ func (encoder *ImageEncoder) Encode(writer io.Writer, frames []image.Image, prog
 
 	if util.IsJPG(encoder.Filename) {
 		return jpeg.Encode(writer, frame, nil)
-	} else {
-		return png.Encode(writer, frame)
 	}
+	return png.Encode(writer, frame)
 }
 
 func (encoder *ImageEncoder) EncodeToFile(filename string, frames []image.Image, progress chan<- int) error {

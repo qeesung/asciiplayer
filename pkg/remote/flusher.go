@@ -72,7 +72,6 @@ func (handler *BaseFlushHandler) Flush(w http.ResponseWriter, s string) error {
 	if flusher, ok := w.(http.Flusher); ok {
 		flusher.Flush()
 		return nil
-	} else {
-		return errors.New("can not flush to invalid writer")
 	}
+	return errors.New("can not flush to invalid writer")
 }
