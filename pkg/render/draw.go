@@ -1,6 +1,6 @@
-// asciiimage package convert the char pixel matrix that converted from
+// render package convert the char pixel matrix that converted from
 // the image2ascii to a png image that draw all ascii chars to the image
-package asciiimage
+package render
 
 import (
 	"errors"

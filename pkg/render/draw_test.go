@@ -1,4 +1,4 @@
-package asciiimage
+package render
 
 import (
 	"github.com/qeesung/image2ascii/convert"

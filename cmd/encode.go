@@ -3,10 +3,10 @@ package cmd
 import (
 	"errors"
 	"fmt"
-	"github.com/qeesung/asciiplayer/pkg/asciiimage"
 	"github.com/qeesung/asciiplayer/pkg/decoder"
 	"github.com/qeesung/asciiplayer/pkg/encoder"
 	"github.com/qeesung/asciiplayer/pkg/progress"
+	"github.com/qeesung/asciiplayer/pkg/render"
 	"github.com/qeesung/asciiplayer/pkg/util"
 	"github.com/qeesung/image2ascii/convert"
 	"github.com/sirupsen/logrus"
@@ -69,7 +69,7 @@ func (encodeCommand *EncodeCommand) encode(args []string) error {
 		return err
 	}
 
-	drawer := asciiimage.NewImageDrawer()
+	drawer := render.NewImageDrawer()
 
 	logrus.Debugf("Rendering the frames to ASCII frames...")
 	convertNotifier := waitingBar.AddBar("Rendering", len(frames))
@@ -105,22 +105,22 @@ func (encodeCommand *EncodeCommand) addFlags() {
 }
 
 func (encodeCommand *EncodeCommand) parseFlags() (convertOptions convert.Options,
-	drawOptions asciiimage.DrawOptions, err error) {
+	drawOptions render.DrawOptions, err error) {
 	convertOptions = encodeCommand.Options
 
-	drawOptions = asciiimage.DefaultDrawOptions
+	drawOptions = render.DefaultDrawOptions
 	drawOptions.FontSize = float64(encodeCommand.FontSize)
 	drawOptions.Colored = encodeCommand.Colored
 	if bgColor, err := util.ConvertHexToRGB(encodeCommand.BackGroundColor); err == nil {
 		drawOptions.BackGroundColor = bgColor
 	} else {
-		return convert.Options{}, asciiimage.DrawOptions{}, err
+		return convert.Options{}, render.DrawOptions{}, err
 	}
 
 	if fgColor, err := util.ConvertHexToRGB(encodeCommand.BackGroundColor); err == nil {
 		drawOptions.ForeGroundColor = fgColor
 	} else {
-		return convert.Options{}, asciiimage.DrawOptions{}, err
+		return convert.Options{}, render.DrawOptions{}, err
 	}
 	return
 }
