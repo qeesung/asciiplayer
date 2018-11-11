@@ -8,6 +8,7 @@ import (
 	"time"
 )
 
+// ClearScreen is the ascii code that can clear the screen
 const ClearScreen = "\033[H\033[2J"
 
 // PlayOptions define some options for playing

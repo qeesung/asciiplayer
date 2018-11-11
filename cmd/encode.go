@@ -14,6 +14,7 @@ import (
 	"github.com/ttacon/chalk"
 )
 
+// EncodeCommand is responsible for encoding
 type EncodeCommand struct {
 	baseCommand
 	convert.Options
@@ -24,6 +25,7 @@ type EncodeCommand struct {
 	OutputFilename  string
 }
 
+// Init for encode command create a command and add flags
 func (encodeCommand *EncodeCommand) Init() {
 	encodeCommand.cmd = &cobra.Command{
 		Use:   "encode",
