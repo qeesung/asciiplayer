@@ -60,7 +60,7 @@ ASCIIPlayer is base on [Image2ASCII](https://github.com/qeesung/image2ascii)(whi
           |      +---------------+                                              |   +---------+
           |      +---------------+                +-------------+               |   +---------+
           |      |               |                |             |               |   |         |
-Input File+------> Image Decoder +---> Frames +-->+ Image2ASCII +->ASCII Frames-+----> Player  +---> stdout
+Input File+------> Image Decoder +---> Frames +-->+ Image2ASCII +->ASCII Frames-+---> Player  +---> stdout
           |      |               |                |             |               |   |         |
           |      +---------------+                +-------------+               |   +---------+
           |      +---------------+                                              |   +---------+
@@ -114,6 +114,11 @@ Play command only work in terminal, decoding the gif or video info multi frames 
 
 More detail please run `asciiplayer play --help`
 
+tips:
+
+- **Smaller terminal screen size**: If the terminal window is too large, the scope of refresh will be larger, and the playback may not be smooth, so the size of the terminal window can be reduced to increase the fluency.
+- **Smaller output ascii image size**: to reduce the scope of refresh, you can output smaller image with options `--ratio` or `--width` and `--height`, Eg: `--ratio=0.1`
+
 ![play tutorial gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/play_tutorial.gif?raw=true)
 
 #### Play examples
@@ -143,6 +148,12 @@ asciiplayer play demo.png
 Encode command can convert gif or video to a ascii gif or video.
 
 More detail please run `asciiplayer encode --help`
+
+tips:
+
+- **Smaller ascii font and output file size** : Encoding may be affected by the size of ASCII character fonts and output pictures. The larger the character size used or the size of output pictures, the larger the memory occupied in encoding process and the longer the time consumed. If you speed up the encoding progress, you can:
+  - reduce the font size with options `--font_size`, Eg: `--font_size=8`
+  - reduce the output file size with options `--ratio` or `--width` and `--height`, Eg: `--ratio=0.1`
 
 ![encode tutorial gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/encode_tutorial.gif?raw=true)
 
@@ -188,6 +199,11 @@ $ curl http://hostname:8080
 ```
 
 More detail please run `asciiplayer server --help`
+
+tips:
+
+- **Smaller terminal screen size**: If the terminal window is too large, the scope of refresh will be larger, and the playback may not be smooth, so the size of the terminal window can be reduced to increase the fluency.
+- **Smaller output ascii image size**: to reduce the scope of refresh, you can output smaller image with options `--ratio` or `--width` and `--height`, Eg: `--ratio=0.1`
 
 ![server tutorial gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/server_tutorial.gif?raw=true)
 
