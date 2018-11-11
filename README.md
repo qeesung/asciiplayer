@@ -114,6 +114,8 @@ Play command only work in terminal, decoding the gif or video info multi frames 
 
 More detail please run `asciiplayer play --help`
 
+![play tutorial gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/play_tutorial.gif?raw=true)
+
 #### Play examples
 
 Play the gif， and be able to match the screen size.
@@ -141,6 +143,11 @@ asciiplayer play demo.png
 Encode command can convert gif or video to a ascii gif or video.
 
 More detail please run `asciiplayer encode --help`
+
+![encode tutorial gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/encode_tutorial.gif?raw=true)
+
+ascii_eye.gif
+![eye gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_eye.gif?raw=true)
 
 #### Encode examples
 
@@ -179,6 +186,11 @@ Access from remote
 $ curl http://hostname:8080
 # play ascii image here
 ```
+
+More detail please run `asciiplayer server --help`
+
+![server tutorial gif](https://github.com/qeesung/asciiplayer/blob/master/docs/images/server_tutorial.gif?raw=true)
+
 
 #### Server examples
 
