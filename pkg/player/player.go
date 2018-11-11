@@ -1,3 +1,5 @@
+// Package player define some player that can flush the ASCII image
+// to stdout.
 package player
 
 import (

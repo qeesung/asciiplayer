@@ -22,12 +22,14 @@ import (
 	"time"
 )
 
+// PlayCommand responsible for playing the ASCII image in the terminal
 type PlayCommand struct {
 	baseCommand
 	convert.Options
 	Delay float64
 }
 
+// Init for play command create a play command and add flags
 func (playCommand *PlayCommand) Init() {
 	playCommand.cmd = &cobra.Command{
 		Use:   "play",

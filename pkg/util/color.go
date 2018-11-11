@@ -6,15 +6,15 @@ import (
 )
 
 // ConvertHexToRGB convert a color hex string to RGB color object
-func ConvertHexToRGB(hex string) (color.RGBA, error) {
-	if hex, err := colors.ParseHEX(hex); err == nil {
+func ConvertHexToRGB(hexStr string) (color.RGBA, error) {
+	hex, err := colors.ParseHEX(hexStr)
+	if err == nil {
 		return color.RGBA{
 			R: hex.ToRGB().R,
 			G: hex.ToRGB().G,
 			B: hex.ToRGB().B,
 			A: 255,
 		}, nil
-	} else {
-		return color.RGBA{}, err
 	}
+	return color.RGBA{}, err
 }

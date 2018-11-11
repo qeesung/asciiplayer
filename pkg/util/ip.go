@@ -4,6 +4,7 @@ import (
 	"net"
 )
 
+// GetIPList get the machine ip address list
 func GetIPList() (IPList []string, err error) {
 	addrs, err := net.InterfaceAddrs()
 	if err != nil {
