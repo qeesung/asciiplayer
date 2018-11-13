@@ -246,7 +246,7 @@ Encoding jpeg sample
 |![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/zolo.jpg?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_zolo.png?raw=true)|
 |![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/gg.jpg?raw=true)|![](https://github.com/qeesung/asciiplayer/blob/master/docs/images/ascii_gg.jpg?raw=true)|
 
-## Todo
+## Todos
 
 - Support playing, encoding, servering video
 - Accelerating the encoding process
