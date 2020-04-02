@@ -25,11 +25,14 @@ steps:
     mv !(gopath) '$(modulePath)'
     echo '##vso[task.prependpath]$(GOBIN)'
     echo '##vso[task.prependpath]$(GOROOT)/bin'
-- task: Delay@1
+- task: Bash@3
   inputs:
-    delayForMinutes: '30'
-  displayName: 'Set up the Go workspace'
-
+    targetType: 'inline'
+    script: |
+      # Write your commands here
+      
+      echo 'Hello world'
+      sleep 10
 - script: |
     go version
     go get -v -t -d ./...
