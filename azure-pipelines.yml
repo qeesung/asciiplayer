@@ -24,7 +24,7 @@ variables:
 
 steps:
 - checkout: self
-- checkout: MyBitBucketServiceConnection
+- checkout: MyBitBucketRepo
 - script: |
     mkdir -p '$(GOBIN)'
     mkdir -p '$(GOPATH)/pkg'
