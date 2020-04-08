@@ -7,7 +7,7 @@ resources:
   repositories:
   - repository: MyBitBucketRepo
     type: bitbucket
-    endpoint: MyBitBucketServiceConnection
+    endpoint: qeesung_bitbucket
     name: qeesung/hello_world
 
 trigger:
