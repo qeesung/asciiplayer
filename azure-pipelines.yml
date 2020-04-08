@@ -3,6 +3,13 @@
 # Add steps that test, save build artifacts, deploy, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/go
 
+resources:
+  repositories:
+  - repository: MyBitBucketRepo
+    type: bitbucket
+    endpoint: MyBitBucketServiceConnection
+    name: qeesung/hello_world
+
 trigger:
 - master
 
@@ -16,6 +23,8 @@ variables:
   modulePath: '$(GOPATH)/src/github.com/$(build.repository.name)' # Path to the module's code
 
 steps:
+- checkout: self
+- checkout: MyBitBucketServiceConnection
 - script: |
     mkdir -p '$(GOBIN)'
     mkdir -p '$(GOPATH)/pkg'
