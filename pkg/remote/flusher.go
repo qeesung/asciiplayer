@@ -64,7 +64,7 @@ func (handler *BaseFlushHandler) HandlerFunc() func(w http.ResponseWriter, r *ht
 
 // Flush flush the string to remote client immediately
 func (handler *BaseFlushHandler) Flush(w http.ResponseWriter, s string) error {
-	fmt.Fprintf(w, s)
+	fmt.Fprintf(w, "%s", s)
 	time.Sleep(time.Duration(100) * time.Millisecond)
 	fmt.Fprintf(w, player.ClearScreen)
 
