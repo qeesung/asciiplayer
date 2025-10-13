@@ -56,7 +56,7 @@ func (gifDecoder *GifDecoder) DecodeFromFile(gifFilename string, progress chan<-
 	return gifDecoder.Decode(f, progress)
 }
 
-// getGifDimensions get the gif dimension
+// getGifDimensions returns the number of frames and total delay
 func (gifDecoder *GifDecoder) getGifDimensions(gif *gif.GIF) (x, y int) {
 	var lowestX int
 	var lowestY int
